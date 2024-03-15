@@ -433,16 +433,16 @@ func main() {
 	}
 
 	/*
-		config.AddEntry(utils.ListEntry{Name: "Midnight Commander", Command: "mc"})
-		config.AddEntry(utils.ListEntry{Name: "Terminal", Command: "konsole"})
-		config.AddEntry(utils.ListEntry{Name: "Neofetch", Command: "neofetch"})
-		config.AddEntry(utils.ListEntry{Name: "test", Command: "notify-send test"})
-		for i := range 50 {
-			config.AddEntry(utils.ListEntry{
-				Name: strconv.Itoa(i),
-				Command: fmt.Sprintf("commmand from %d", i),
-			})
-		}
+	config.AddEntry(utils.ListEntry{Name: "Midnight Commander", Command: "mc"})
+	config.AddEntry(utils.ListEntry{Name: "Terminal", Command: "konsole"})
+	config.AddEntry(utils.ListEntry{Name: "Neofetch", Command: "neofetch"})
+	config.AddEntry(utils.ListEntry{Name: "test", Command: "notify-send test"})
+	for i := range 50 {
+		config.AddEntry(utils.ListEntry{
+			Name: strconv.Itoa(i),
+			Command: fmt.Sprintf("commmand from %d", i),
+		})
+	}
 	*/
 
 	err = run()
@@ -450,153 +450,3 @@ func main() {
 		panic(err)
 	}
 }
-
-/*
-func main_() {
-	w2 := widgets.NewTInputBox(app)
-	w2.Geometry = func(s tcell.Screen) (int, int, int, int) {
-		w, _ := s.Size()
-		return 0, 0, w, 3
-	}
-	w2.Title = "TInputBox"
-	w2.Footer = "<Alt-Back to clear>"
-
-	w3 := widgets.NewTListBox(app, &w2.Text)
-	w3.Geometry = func(s tcell.Screen) (int, int, int, int) {
-		w, h := s.Size()
-		return 0, 3, w, h
-	}
-	w3.Title = "TListBox"
-	w3.AddEntry("mc")
-	w3.AddEntry("neofetch")
-	w3.AddEntry("xdg-open https://www.horeb.org")
-	w3.AddEntry("sudo apt update")
-	w3.AddEntry("flatpak update")
-
-	//app.AddWidget(w1)
-	app.AddWidget(w2)
-	app.AddWidget(w3)
-
-	if err := app.Exec(); err != nil {
-		panic(err)
-	}
-}
-*/
-
-/*
-
-func main() {
-	fmt.Println("Hello")
-
-	box := tview.NewBox()
-	box.SetTitle("TITLE")
-	box.SetBorder(true)
-
-	app := tview.NewApplication()
-	app.SetRoot(box, true)
-
-	err := app.Run()
-	if err != nil {
-		panic(err)
-	}
-}
-
-/*
-
-func main_() {
-	fmt.Println("Hello")
-
-	gui := gocui.NewGui()
-	if err := gui.Init(); err != nil {
-		panic(err)
-	}
-	defer gui.Close()
-
-	gui.Cursor = true
-
-	gui.SetLayout(func(g *gocui.Gui) error {
-		w, h := g.Size()
-
-		v, err := g.SetView("Test", 0, 0, w-10, h-10)
-		if err == gocui.ErrUnknownView {
-			v.Title = "T1"
-			v.Frame = true
-			v.Autoscroll = true
-			v.Highlight = false
-
-			v.BgColor = gocui.ColorWhite
-			v.FgColor = gocui.ColorBlack
-
-			v.SelBgColor = gocui.ColorRed
-			v.SelFgColor = gocui.ColorGreen
-
-			v.Wrap = true
-			v.Editable = false
-
-			v.SetCursor(1, 0)
-			fmt.Fprintln(v, "T1 content")
-
-			g.SetCurrentView(v.Name())
-		}
-
-		v, err = g.SetView("List", 0, 20, w-1, h-1)
-		if err == gocui.ErrUnknownView {
-			list := CreateList(v, true)
-			list.SetTitle("LIST")
-			list.AddItem("Item1")
-			list.AddItem("Item2")
-			list.AddItem("Item3")
-		}
-
-		t := "bottom"
-		//_, max := v.Size()
-		for i, ch := range t {
-			g.SetRune(i+2, 5, ch)
-		}
-
-		g.SetRune(w-11, h-10, 'A')
-
-		return nil
-	})
-
-	e := gui.SetKeybinding("", 'q', gocui.ModNone, func(g *gocui.Gui, v *gocui.View) error {
-		return gocui.ErrQuit
-	})
-	if e != nil {
-		panic(e)
-	}
-
-	err := gui.MainLoop()
-	if err != nil && err != gocui.ErrQuit {
-		panic(err)
-	}
-}
-
-type UI struct {
-	*gocui.Gui
-}
-
-func (g *UI) SetView2(name string, x0, y0, x1, y1 int, init func(*gocui.View)) error {
-	v, err := g.SetView(name, x0, y0, x1, y1)
-	if err == gocui.ErrUnknownView {
-		init(v)
-	}
-
-	return err
-}
-
-/*
-type UI gocui.Gui
-func (g *UI) SetView2(name string, x0, y0, x1, y1 int, init func()) (*gocui.View, error) {
-	v, err := g.SetView(name, x0, y0, x1, y1)
-	if err != nil {
-		if err == gocui.ErrUnknownView {
-
-		} else {
-			return nil, err
-		}
-	}
-
-	return v, nil
-}
-*/
